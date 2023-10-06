@@ -42,12 +42,18 @@ public class Main {
         miPikachu.atacar(charmanderSalvaje, "ATACKTRUENO");
         
         //Pelea entre  Bullbasaur y Squirtle
+         
+        
+        
+        
+        
+        
         
         mewSalvaje.setNombre("pan");
          Mew pan= mewSalvaje;
          
          pan.atacar(bullSalvaje);
-         pan.atacar(bullSalvaje, "BURBUJA");
+         pan.atacar(bullSalvaje, "pato");
          
          bullSalvaje.setNombre("BULLBU");
          Bullbasaur bullbu=bullSalvaje;
@@ -68,7 +74,7 @@ public class Main {
         Tauros vaca=TauroSalvaje;
          
         vaca.atacar(snorlaxSalvaje);
-        vaca.atacar(snorlaxSalvaje, "ATAQUE ALA");
+        vaca.atacar(snorlaxSalvaje, "Cara Susto");
         
          
          
