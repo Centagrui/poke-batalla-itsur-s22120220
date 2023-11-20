@@ -20,7 +20,8 @@ public class Charmander extends Pokemon {
      */
     public enum Movimientos {
         ATAQUE_RAPIDO,
-
+        Impactrueno,
+        Latigo,
         //Otros movimientos...
     }
 
@@ -33,28 +34,55 @@ public class Charmander extends Pokemon {
         precision = 4;
     }
 
-    //Constructor alterno 1
-    public Charmander(String nombre) {
-        this(); //invocando al constructor default
+    
+    public  Charmander(String nombre){
+        this();
         this.nombre = nombre;
     }
-
-    public void atacar(Pokemon oponente, Charmander.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
+    
+    public Enum[] getMovimientos(){
+        return  Charmander.Movimientos.values();
+    }
+    
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
         Movimiento instanciaMovimiento;
-        switch (movimientoAUtilizar) {
+        Charmander.Movimientos movimientoAUtilizar =  Charmander.Movimientos.values()[ordinalMovimiento];
+        switch(movimientoAUtilizar){
+            case Latigo:
+                instanciaMovimiento = new Latigo();
+                break;
             case ATAQUE_RAPIDO:
                 instanciaMovimiento = new AtaqueRapido();
                 break;
-
-            //Otros movimientos aquí...
+            case  Impactrueno:
+                instanciaMovimiento = new Impactrueno();
+                break;
             default:
                 throw new AssertionError();
         }
-
-        //Aplicar el movimiento
+        if(this.hp<=0){
+            System.out.println(" Charmander esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
         instanciaMovimiento.utilizar(this, oponente);
-
     }
+    public void atacar (Pokemon oponente, Pikachu.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+            case IMPACTRUENO:
+                instanciaMovimiento = new Impactrueno();
+                break;
+            case ATAQUE_RAPIDO:
+                instanciaMovimiento = new AtaqueRapido ();
+                break;
+            case  LATIGO:
+                instanciaMovimiento = new  Latigo();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    } 
+
+
 }
+

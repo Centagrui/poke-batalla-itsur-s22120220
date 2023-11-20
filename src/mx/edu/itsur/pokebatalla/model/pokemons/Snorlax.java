@@ -36,48 +36,53 @@ public class Snorlax extends Pokemon{
         this.habilidades.add("Azote");
         
     }
-    
-    public Snorlax (String nombre)
-    {
+     public Snorlax(String nombre){
         this();
-        this.nombre = nombre; 
-        
+        this.nombre = nombre;
     }
-    public void atacar (Pokemon oponente, String habilidad)
-            {
-                
-                if (habilidad.equals("Reciclaje"))
-                {
-                    System.out.println(this.nombre + "Reciclaje" + " y ataco a: " + oponente);
-                }
-                else if (habilidad.equals("Azote"))
-                {
-                    System.out.println(this.nombre + "Azote" + " y ataco a: " + oponente);
-                }
-            }
-     public void atacar(Pokemon oponente,Snorlax.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
-        Movimiento instanciaMovimiento;        
-        switch (movimientoAUtilizar) {
-            case Mordisco:
+    
+    public Enum[] getMovimientos(){
+        return Tauros.Movimientos.values();
+    }
+    
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
+        Movimiento instanciaMovimiento;
+        Snorlax.Movimientos movimientoAUtilizar = Snorlax.Movimientos.values()[ordinalMovimiento];
+        switch(movimientoAUtilizar){
+            case Mordisco :
                 instanciaMovimiento = new Mordisco();
+                break;
+            case Reserva:
+                instanciaMovimiento = new Reserva();
                 break;
             case Antojo:
                 instanciaMovimiento = new Antojo();
                 break;
-            case Reserva:
-                instanciaMovimiento = new Reserva ();
-                break;
-
-            //Otros movimientos aquí...                
             default:
                 throw new AssertionError();
         }
-
-        //Aplicar el movimiento.
+        if(this.hp<=0){
+            System.out.println("Snorlax esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
         instanciaMovimiento.utilizar(this, oponente);
     }
-
+    public void atacar (Pokemon oponente, Snorlax.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+            case Mordisco :
+                instanciaMovimiento = new Mordisco();
+                break;
+            case Reserva:
+                instanciaMovimiento = new Reserva ();
+                break;
+            case Antojo:
+                instanciaMovimiento = new Antojo();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+    
+    
 }
-

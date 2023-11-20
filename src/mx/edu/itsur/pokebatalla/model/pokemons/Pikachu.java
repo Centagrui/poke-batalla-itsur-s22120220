@@ -9,6 +9,7 @@ import mx.edu.itsur.pokebatalla.model.moves.AtaqueRapido;
 import mx.edu.itsur.pokebatalla.model.moves.Impactrueno;
 import mx.edu.itsur.pokebatalla.model.moves.Latigo;
 import mx.edu.itsur.pokebatalla.model.moves.Movimiento;
+import static mx.edu.itsur.pokebatalla.model.pokemons.Pikachu.Movimientos.IMPACTRUENO;
 
 /**
  *
@@ -36,35 +37,54 @@ public class Pikachu extends Pokemon {
         this.nivel = 1;
         this.precision = 4;
     }
-
-    //Constructor alterno 1
-    public Pikachu(String nombre) {
-        this(); //invocando al constructor default
+   
+    public Pikachu(String nombre){
+        this();
         this.nombre = nombre;
     }
-
-    public void atacar(Pokemon oponente, Pikachu.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
-        Movimiento instanciaMovimiento;        
-        switch (movimientoAUtilizar) {
+    
+    public Enum[] getMovimientos(){
+        return Pikachu.Movimientos.values();
+    }
+    
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
+        Movimiento instanciaMovimiento;
+       Pikachu.Movimientos movimientoAUtilizar = Pikachu.Movimientos.values()[ordinalMovimiento];
+        switch(movimientoAUtilizar){
             case IMPACTRUENO:
                 instanciaMovimiento = new Impactrueno();
                 break;
             case ATAQUE_RAPIDO:
                 instanciaMovimiento = new AtaqueRapido();
                 break;
-            case LATIGO:
+            case  LATIGO:
                 instanciaMovimiento = new Latigo();
                 break;
-
-            //Otros movimientos aquí...                
             default:
                 throw new AssertionError();
         }
-
-        //Aplicar el movimiento.
+        if(this.hp<=0){
+            System.out.println("Pikachu esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
         instanciaMovimiento.utilizar(this, oponente);
     }
+    public void atacar (Pokemon oponente, Pikachu.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+            case IMPACTRUENO:
+                instanciaMovimiento = new Impactrueno();
+                break;
+            case ATAQUE_RAPIDO:
+                instanciaMovimiento = new AtaqueRapido ();
+                break;
+            case  LATIGO:
+                instanciaMovimiento = new  Latigo();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    } 
+
 
 }

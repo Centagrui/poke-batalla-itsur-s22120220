@@ -11,8 +11,8 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Mew;
 import mx.edu.itsur.pokebatalla.model.pokemons.Pikachu;
 import mx.edu.itsur.pokebatalla.model.pokemons.Snorlax;
 import mx.edu.itsur.pokebatalla.model.pokemons.Tauros;
-import pokebatalla.Batallas.Batalla;
-import pokebatalla.Batallas.Entrenador;
+import Pokebatalla.Batalla.Batalla;
+import Pokebatalla.Batalla.Entrenador;
 
 /**
  *

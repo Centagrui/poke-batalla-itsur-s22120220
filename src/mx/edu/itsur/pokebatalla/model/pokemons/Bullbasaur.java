@@ -18,6 +18,7 @@ public class Bullbasaur extends Pokemon {
     public enum Movimientos {
         ATAQUE_RAPIDO,
         LATIGO
+       
     }
 
     public Bullbasaur() {
@@ -29,16 +30,19 @@ public class Bullbasaur extends Pokemon {
         precision = 4;
     }
 
-    //Constructor alterno 1
-    public Bullbasaur(String nombre) {
-        this(); //invocando al constructor default
+   
+    public  Bullbasaur(String nombre){
+        this();
         this.nombre = nombre;
-
     }
-     public void atacar(Pokemon oponente, Bullbasaur.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
+    
+    public Enum[] getMovimientos(){
+        return Bullbasaur.Movimientos.values();
+    }
+    
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
         Movimiento instanciaMovimiento;
+        Bullbasaur.Movimientos movimientoAUtilizar =  Bullbasaur.Movimientos.values()[ordinalMovimiento];
         switch (movimientoAUtilizar) {
             case ATAQUE_RAPIDO:
                 instanciaMovimiento = new AtaqueRapido();
@@ -46,15 +50,31 @@ public class Bullbasaur extends Pokemon {
             case LATIGO:
                 instanciaMovimiento = new Latigo();
                 break;
-
-            //Otros movimientos aquí...
+            default:
+                throw new AssertionError();
+                
+        }
+        if(this.hp<=0){
+            System.out.println(" Charmander esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
+        instanciaMovimiento.utilizar(this, oponente);
+    }
+    public void atacar (Pokemon oponente, Bullbasaur.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+           
+            case ATAQUE_RAPIDO:
+                instanciaMovimiento = new AtaqueRapido ();
+                break;
+            case  LATIGO:
+                instanciaMovimiento = new  Latigo();
+                break;
             default:
                 throw new AssertionError();
         }
+    } 
 
-        //Aplicar el movimiento
-        instanciaMovimiento.utilizar(this, oponente);
-
-    }
 
 }
+

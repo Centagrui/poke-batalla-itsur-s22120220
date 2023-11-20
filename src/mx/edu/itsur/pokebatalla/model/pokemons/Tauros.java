@@ -35,32 +35,20 @@ public class Tauros extends Pokemon {
         this.habilidades.add("Cara Susto");
         
     }
-    
-    public Tauros (String nombre)
-    {
+   public Tauros(String nombre){
         this();
-        this.nombre = nombre; 
-        
+        this.nombre = nombre;
     }
     
-    public void atacar(Pokemon oponente, String habilidad)
-    {
-        if (habilidad.equals("Proteccion"))
-                {
-                    System.out.println(this.nombre + "Proteccion" + " y ataco a: " + oponente);
-                }
-        else if(habilidad.equals("Cara Susto"))
-        {
-            System.out.println(this.nombre + "Cara Susto" + " y ataco a: " + oponente);
-        }
+    public Enum[] getMovimientos(){
+        return Tauros.Movimientos.values();
     }
     
-    public void atacar(Pokemon oponente, Tauros.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
-        Movimiento instanciaMovimiento;        
-        switch (movimientoAUtilizar) {
-            case Placaje:
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
+        Movimiento instanciaMovimiento;
+        Tauros.Movimientos movimientoAUtilizar = Tauros.Movimientos.values()[ordinalMovimiento];
+        switch(movimientoAUtilizar){
+            case Placaje :
                 instanciaMovimiento = new Placaje();
                 break;
             case Cabezazo_zen:
@@ -69,13 +57,31 @@ public class Tauros extends Pokemon {
             case Sania:
                 instanciaMovimiento = new Sania();
                 break;
-
-            //Otros movimientos aquí...                
             default:
                 throw new AssertionError();
         }
-
-        //Aplicar el movimiento.
+        if(this.hp<=0){
+            System.out.println("Tauros esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
         instanciaMovimiento.utilizar(this, oponente);
     }
+    public void atacar (Pokemon oponente, Tauros.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+            case Placaje :
+                instanciaMovimiento = new Placaje();
+                break;
+            case Cabezazo_zen:
+                instanciaMovimiento = new CabezazoZen ();
+                break;
+            case Sania:
+                instanciaMovimiento = new Sania();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+    
+    
 }

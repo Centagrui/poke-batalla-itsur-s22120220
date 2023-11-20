@@ -37,30 +37,19 @@ public class Mew extends Pokemon {
         
     }
     
-    public Mew (String nombre)
-    {
+    public Mew(String nombre){
         this();
-        this.nombre = nombre; 
-        
+        this.nombre = nombre;
     }
     
-    public void atacar(Pokemon oponente, String habilidad)
-    {
-        if (habilidad.equals("Derribo"))
-                {
-                    System.out.println(this.nombre + "Derribo" + " y ataco a: " + oponente);
-                }
-        else if(habilidad.equals("Bofetón lodo"))
-        {
-            System.out.println(this.nombre + "Bofetón lodo" + " y ataco a: " + oponente);
-        }
+    public Enum[] getMovimientos(){
+        return Mew.Movimientos.values();
     }
     
-    public void atacar(Pokemon oponente, Mew.Movimientos movimientoAUtilizar) {
-
-        //Instanciar el movimiento solicitado
-        Movimiento instanciaMovimiento;        
-        switch (movimientoAUtilizar) {
+    public void atacar(Pokemon oponente, int ordinalMovimiento){
+        Movimiento instanciaMovimiento;
+       Mew.Movimientos movimientoAUtilizar = Mew.Movimientos.values()[ordinalMovimiento];
+        switch(movimientoAUtilizar){
             case PoderPasado :
                 instanciaMovimiento = new PoderPasado();
                 break;
@@ -70,16 +59,29 @@ public class Mew extends Pokemon {
             case Teraexplosion:
                 instanciaMovimiento = new Teraexplosion();
                 break;
-
-            //Otros movimientos aquí...                
             default:
                 throw new AssertionError();
         }
-
-        //Aplicar el movimiento.
+        if(this.hp<=0){
+            System.out.println("Snorlax esta agotado y ya no puede realizar mas movimientos");
+            return;
+        }
         instanciaMovimiento.utilizar(this, oponente);
     }
-
+    public void atacar (Pokemon oponente, Mew.Movimientos movimientosAutilizar){
+        Movimiento instanciaMovimiento;
+        switch(movimientosAutilizar){
+            case PoderPasado:
+                instanciaMovimiento = new PoderPasado();
+                break;
+            case Imagen:
+                instanciaMovimiento = new Imagen ();
+                break;
+            case Teraexplosion:
+                instanciaMovimiento = new Teraexplosion();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    } 
 }
-
-
