@@ -5,6 +5,7 @@
  */
 package pokebatallaa;
 
+import FileManager.FileManager;
 import mx.edu.itsur.pokebatalla.model.pokemons.Bullbasaur;
 import mx.edu.itsur.pokebatalla.model.pokemons.Charmander;
 import mx.edu.itsur.pokebatalla.model.pokemons.Mew;
@@ -23,7 +24,9 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Hello PokeBatalla!");
-
+        Batalla Batalla = null;
+        FileManager.guardarBatalla(Batalla, "batalla_guardada.ser");
+        Batalla batallaCargada = FileManager.cargarBatalla("batalla_guardada.ser");
          Mew Pan = new Mew("Pan");
          Snorlax Waton = new Snorlax("Gordo");
         Tauros Griego = new Tauros(" Dios");
@@ -41,6 +44,11 @@ public class Main {
        
        Batalla batalla = new Batalla(entrenador1, entrenador2);
        batalla.desarrollarBatalla();
+        if (batallaCargada != null) {
         
+        }
     }
 }
+        
+    
+

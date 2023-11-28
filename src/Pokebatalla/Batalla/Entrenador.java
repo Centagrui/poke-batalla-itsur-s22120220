@@ -4,6 +4,7 @@
  */
 package Pokebatalla.Batalla;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
@@ -11,14 +12,13 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
  *
  * @author Maria Centagrui Perez Alvarez
  */
-public class Entrenador {
+public class Entrenador implements Serializable {
     protected String nombre;
     protected List<Pokemon> pokemonsCapturados;
     protected Pokemon pokemonActual;
     
     public Entrenador(String nombre){
         this.nombre = nombre;
-        this.pokemonsCapturados = new ArrayList<>();
         this.pokemonsCapturados = new ArrayList<>();
     }
     
@@ -63,4 +63,5 @@ public class Entrenador {
     public List<Pokemon> getPokemonsCapturados(){
         return pokemonsCapturados;
     }
+    
 }

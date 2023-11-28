@@ -67,6 +67,10 @@ public abstract class Pokemon {
             return this.getClass().getSimpleName() + "[tipo:" + tipo + " hp:" + hp + "]";
         }
     }
+
+    public int gethp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }
