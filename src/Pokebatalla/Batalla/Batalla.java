@@ -23,7 +23,7 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
     protected int turno = 1;
     protected boolean batallaFinalizada = false;
 
-    private boolean primerAtaqueRealizado = false;
+    private final boolean primerAtaqueRealizado = false;
 
     public Batalla(Entrenador entrenador1, Entrenador entrenador2) {
         this.entrenador1 = entrenador1;
@@ -35,10 +35,8 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
         
        System.out.println("Los juegos del hambre ITSUR 2023, han comenzado  ");
       
-        System.out.println(entrenador1.getNombre() + " " + entrenador2.getNombre());
-
-        System.out.println("");
-
+        System.out.println(entrenador1.getNombre() + " Contra  " + entrenador2.getNombre());
+        System.out.println(" Los pokemones disponibles son:");
         do {
             try {
                 eligirPokemon(entrenador1);
@@ -91,82 +89,76 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
         }
     }
 
-    private void eligirPokemon(Entrenador EnTn) {
-        int idx = 1;
-        System.out.println("   ");
-        for (Pokemon pokemon : EnTn.getPokemonsCapturados()) {
-            System.out.println(idx + ".- " + pokemon.getClass().getSimpleName());
-            idx++;
+     private void eligirPokemon(Entrenador entrenadorEnturno) {
+         int idx = 1;
+         System.out.println("   ");
+         for (Pokemon pokemon : entrenadorEnturno.getPokemonsCapturados()) {
+             System.out.println(idx + ".- " + pokemon.getClass().getSimpleName());
+             idx++;
              System.out.println("   ");
-        }
-        System.out.println("");
-        System.out.println("Escoge un  pokemon " + EnTn.getNombre());
+         }
+         System.out.println("");
+         System.out.println("Escoge un  pokemon " + entrenadorEnturno.getNombre());
 
-        char auxLectura = '0';
-
-        try {
-            auxLectura = (char) System.in.read();
-            System.in.read((new byte[System.in.available()]));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        Pokemon pokemonSeleccionado = EnTn.getPokemonsCapturados()
-                .get(Character.getNumericValue(auxLectura) - 1);
-        EnTn.setPokemonActual(pokemonSeleccionado);
-    }
+         char auxLectura = '0';
+         try {
+             auxLectura = (char) System.in.read();
+             System.in.read((new byte[System.in.available()]));
+         } catch (Exception ex) {
+             ex.printStackTrace();
+         }
+         Pokemon pokemonSeleccionado = entrenadorEnturno.getPokemonsCapturados()
+                 .get(Character.getNumericValue(auxLectura) - 1);
+         entrenadorEnturno.setPokemonActual(pokemonSeleccionado);
+     }
 
    
     private void seleccionarAtaque(Entrenador entrenadorEnturno, Pokemon oponente) {
 
-        Pokemon pokemonActual = entrenadorEnturno.getPokemonActual();
+         Pokemon pokemonActual = entrenadorEnturno.getPokemonActual();
 
-        System.out.println("----------===========================----------");
-        System.out.println("Seleccione un ataque para " + pokemonActual.getClass().getSimpleName() + ":");
+         System.out.println("                             ");
+         System.out.println("Seleccione un ataque para " + pokemonActual.getClass().getSimpleName() + ":");
+         int opcionAtaque = -1;
+         while (true) {
+             try {
+                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                 String input = br.readLine();
 
-        int idx = 1;
+                 opcionAtaque = Integer.parseInt(input);
 
-        for (Enum movimiento : pokemonActual.getMovimientos()) {
-            System.out.println(idx + ".- " + movimiento);
-            idx++;
-        }
-        System.out.println("----------===========================----------");
+                 if (opcionAtaque < 1 || opcionAtaque > pokemonActual.getMovimientos().length) {
+                     System.out.println("Elige un ataque valido. Inténtalo de nuevo.");
+                 } else {
+                     break;
+                 }
+             } catch (IOException ex) {
+                 System.out.println("Entrada invalida. Inténtalo de nuevo.");
+                 ex.printStackTrace();
+             } catch (NumberFormatException ex) {
+                 System.out.println("Ingrese un número válido.");
+             }
+         }
 
-        int opcionAtaque = -1;
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            opcionAtaque = Integer.parseInt(br.readLine());
-        } catch (IOException | NumberFormatException ex) {
-            System.out.println("Ingresa algun numero valido mostrado en pantalla.");
-            return;
-        }
-
-        if (opcionAtaque < 1 || opcionAtaque > pokemonActual.getMovimientos().length) {
-            System.out.println("La opción de ataque no es valida.");
-            return;
-        }
-
-       
-        entrenadorEnturno.instruirMovimientoAlPokemonActual(oponente, opcionAtaque - 1);
-    }
-
+         entrenadorEnturno.instruirMovimientoAlPokemonActual(oponente, opcionAtaque - 1);
+     }
+    
+ 
 
     private void cambiarPokemon(Entrenador entrenador) {
-        System.out.println("Quieres cambiar de pokemon ? (S/N)");
-
+        System.out.println("Quieres cambiar de pokemon ? (S/N) favor de ingresar las letra minuscula :)");
         char respuesta = 'N';
-
         while (true) {
+            
             try {
                 respuesta = (char) System.in.read();
                 System.in.read((new byte[System.in.available()]));
-                break;  // Salir  si no hay excepciones
+                break;  
             } catch (IOException ex) {
                 System.out.println("Error de entrada o salida al leer la respuesta. Intenta de nuevo.");
                 ex.printStackTrace();
             }
         }
-
         if (respuesta == 'S' || respuesta == 's') {
 
             System.out.println("Pokemones avalibles:");
@@ -175,9 +167,7 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
                 System.out.println(idx + ".- " + pokemon.getClass().getSimpleName());
                 idx++;
             }
-
-   
-            System.out.println("Elige un Pokemon:");
+             System.out.println("Elige un Pokemon:");
 
             char auxLectura = '0';
 
@@ -200,4 +190,5 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
             }
     }
     }
+    
 }

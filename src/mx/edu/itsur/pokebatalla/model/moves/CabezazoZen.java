@@ -7,7 +7,7 @@ package mx.edu.itsur.pokebatalla.model.moves;
 
 /**
  *
- * @author perez
+ * @author  Maria Centagrui Perez Alvarez
  */
 public class CabezazoZen extends MovimientoEstado{
 

@@ -7,7 +7,8 @@ package mx.edu.itsur.pokebatalla.model.moves;
 
 /**
  *
- * @author perez
+ * @author 7
+ * Maria Centagrui Perez Alvarez 
  */
 public class Reserva extends MovimientoEspecial {
 

@@ -7,7 +7,8 @@ package mx.edu.itsur.pokebatalla.model.moves;
 
 /**
  *
- * @author perez
+ * @author  Maria Centaagrui Perez Alvarez 
+ * 
  */
 public class Mordisco extends MovimientoEspecial {
 

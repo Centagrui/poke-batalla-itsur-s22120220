@@ -7,7 +7,8 @@ package mx.edu.itsur.pokebatalla.model.moves;
 
 /**
  *
- * @author perez
+ * @author 
+ * Maria Centagrui Perez Alvarez 
  */
 public class Teraexplosion  extends MovimientoEspecial{
 
