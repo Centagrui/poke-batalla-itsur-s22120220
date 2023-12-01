@@ -16,7 +16,7 @@ public class FileManager {
      
     public static final String pokemones = "batalla.txt";
 
-    public static final String partida = "batalla.pokemon";
+    public static final String partida = "batalla";
 
     public static void escribirPartida(Batalla x) {
         try (ObjectOutputStream escritorDeObjetos = new ObjectOutputStream(new FileOutputStream(partida))) {
