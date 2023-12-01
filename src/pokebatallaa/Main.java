@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Hello PokeBatalla!");
        Batalla b = FileManager.leerPartida();
         if(b==null){
-        System.out.println("Hello PokeBatalla!");
+        
         Mew Pan = new Mew("Pan");
          Snorlax Waton = new Snorlax("Gordo");
         Tauros Griego = new Tauros(" Dios");
