@@ -26,7 +26,8 @@ public class Snorlax extends Pokemon{
     }
     public Snorlax ()
     {
-        this.ataque = 190; 
+        this.tipo = "Gordo";
+        this.ataque = 15; 
         this.defensa = 169; 
         this.hp = 100; 
         this.nivel = 50; 

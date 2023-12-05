@@ -15,14 +15,13 @@ import mx.edu.itsur.pokebatalla.model.pokemons.Pokemon;
 /**
  *
  * @author Maria Centagrui Perez Alvarez
- * 
+ *
  */
-
- public class Batalla implements Serializable {
+public class Batalla implements Serializable {
 protected Entrenador entrenador1;
     protected Entrenador entrenador2;
     protected int turno = 1;
-    protected boolean batallaFinalizada = false;
+    protected boolean fn = false;
 
     // Constructor
     public Batalla(Entrenador entrenador1, Entrenador entrenador2) {
@@ -40,8 +39,8 @@ protected Entrenador entrenador1;
         Entrenador entrenadorEnTurno = null;
         Entrenador entrenadorOponente = null;
 
-        System.out.println("Los juegos del hambre ITSUR 2023, han comenzado  ");
-      System.out.println(entrenador1.getNombre() + " Contra  " + entrenador2.getNombre());
+        System.out.println(" ya se prendio esta baina pelen  ");
+      System.out.println(entrenador1.getNombre() + " VZ " + entrenador2.getNombre());
  
         // La primera vez ambos entrenadores se elegirán Pokémon
         // 1. El primer entrenador selecciona su pokemon.
@@ -69,7 +68,7 @@ protected Entrenador entrenador1;
             }
         } while (entrenador2.getPokemonActual() == null);
 
-        while (!batallaFinalizada) {
+        while (!fn) {
 
             // 1. Asignar variables de entrenador acorde al turno.
             if (turno == 1) {
@@ -82,15 +81,12 @@ protected Entrenador entrenador1;
             System.out.println("Es el turno de: " + entrenadorEnTurno.nombre);
 
             // 2. Se da opción al entrenador en turno de que cambie de Pokemon antes de escoger movimiento.
-            if (entrenadorEnTurno.getPokemonActual().gethp() > 0 && entrenadorOponente.getPokemonActual().gethp() > 0) {
-                System.out.println(entrenadorEnTurno.getNombre() + " tu Pokemon actual es: " + entrenadorEnTurno.getPokemonActual());
+            if (entrenadorEnTurno.getPokemonActual().getHp() > 0 && entrenadorOponente.getPokemonActual().getHp() > 0) {
+                System.out.println(entrenadorEnTurno.getNombre() + " tu Pokemon es: " + entrenadorEnTurno.getPokemonActual());
                 System.out.println("El Pokemon de tu oponente " + entrenadorOponente.getNombre() + " es: " + entrenadorOponente.getPokemonActual());
                 System.out.println("CAMBIAR POKEMON");
                 System.out.println("1 -> NO");
                 System.out.println("2 -> SI");
-                System.out.println("QUIERES GUARDAR LA BATALLA");
-                System.out.println("Y -> SI");
-                System.out.println("N -> NO");
                 try {
                     char auxLectura = (char) System.in.read(); // Leer opción seleccionada
                     System.in.read(new byte[System.in.available()]); // Limpiar buffer
@@ -124,41 +120,10 @@ protected Entrenador entrenador1;
               
                 if (entrenadorOponente.estaDerrotado()) {
                     // Si terminó, se ha terminado la batalla.
-                    System.out.println(entrenadorOponente.getNombre() + " PERDIO");
-                    System.out.println(  entrenadorEnTurno.getNombre() + "!! HAS GANADO LA BATALLA Y UN PAN ");
-                    // Preguntar al usuario si desea eliminar el archivo
-                    System.out.println("¿Deseas eliminar el archivo de partida? (Y/N)");
-
-                    try {
-                        char respuestaEliminar = (char) System.in.read(); // Leer respuesta del usuario
-                        System.in.read(new byte[System.in.available()]); // Limpiar buffer
-
-                        if (respuestaEliminar == 'Y' || respuestaEliminar == 'y') {
-                            FileManager.borrarPartida(); // Eliminar el archivo
-                            System.out.println("Archivo eliminado.");
-                        } else {
-                            System.out.println("El archivo no ha sido eliminado.");
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
-                    try {
-                        char respuestaEliminar = (char) System.in.read(); // Leer respuesta del usuario
-                        System.in.read(new byte[System.in.available()]); // Limpiar buffer
-
-                        if (respuestaEliminar == 'Y' || respuestaEliminar == 'y') {
-                            FileManager.borrarPartida(); // Eliminar el archivo
-                            System.out.println("Archivo eliminado.");
-                        } else {
-                            System.out.println("El archivo no ha sido eliminado.");
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
+                    System.out.println(entrenadorOponente.getNombre() + "derrotado ");
+                    System.out.println(  entrenadorEnTurno.getNombre() + "vencedor");
                     // Fin del juego
-                    batallaFinalizada = true;
+                    fn = true;
                 } else {
                     // 5. Si nadie ha ganado aún, se cambia el turno y repite.
                     salvarProgreso();
@@ -168,19 +133,19 @@ protected Entrenador entrenador1;
                         turno = 1;
                     }
                 }
-            } else if (entrenadorEnTurno.getPokemonActual().gethp() > 0 && entrenadorOponente.getPokemonActual().gethp() <= 0) {
+            } else if (entrenadorEnTurno.getPokemonActual().getHp() > 0 && entrenadorOponente.getPokemonActual().getHp() <= 0) {
                 System.out.println(entrenadorEnTurno.getNombre() + " tu Pokemon actual es: " + entrenadorEnTurno.getPokemonActual());
                 if (entrenadorOponente.estaDerrotado()) {
                    
-                    System.out.println(entrenadorOponente.getNombre() + " esta derrotado!!!");
-                    System.out.println(" " + entrenadorEnTurno.getNombre() + "ESTE MENSAJE INFORMA QUE GANASTE UN PAN Y LA BATALLA");
-                    batallaFinalizada = true;
+                    System.out.println(entrenadorOponente.getNombre() + "quedo F tu pokemon");
+                    System.out.println(" " + entrenadorEnTurno.getNombre() + "Ganaste y asaltaste al oponente ahora que");
+                    fn = true;
                 } else {
-                    System.out.println("Cambia tu pokemon por cuestiones de salud");
+                    System.out.println("Rapido cambia de pokemon o no como gustes");
                     seleccionarPokemon(entrenadorOponente);
                 }
-            } else if (entrenadorEnTurno.getPokemonActual().gethp() <= 0 && entrenadorOponente.getPokemonActual().gethp() > 0) {
-                System.out.println(" pokemon se debilito cambialo");
+            } else if (entrenadorEnTurno.getPokemonActual().getHp() <= 0 && entrenadorOponente.getPokemonActual().getHp() > 0) {
+                System.out.println(" pokemon esta debil cambialo");
                 System.out.println("El Pokemon de tu oponente " + entrenadorOponente.getNombre() + " es: " + entrenadorOponente.getPokemonActual());
                 System.out.println("Deseas cambiar de Pokemon?");
                 seleccionarPokemon(entrenadorEnTurno);
@@ -190,8 +155,8 @@ protected Entrenador entrenador1;
 
     private void seleccionarPokemon(Entrenador ent) {
     
-        boolean kk = false;
-        while (!kk) {
+        boolean derrota = false;
+        while (!derrota) {
             System.out.println("pokemones a usar" + ent.nombre );
             int auxCount = 1;
 
@@ -211,27 +176,26 @@ protected Entrenador entrenador1;
                         ent.setPokemonActual(pokemonSeleccionado);
                         System.out.println(ent.nombre + " ha seleccionado a: " + ent.getPokemonActual());
                      
-                        kk = true;
+                        derrota = true;
                     } else {
-                        if (ent.getPokemonsCapturados().get(0).gethp() == 0 && ent.getPokemonsCapturados().get(1).gethp() == 0) {
-                            System.out.println("ya perdiste tilin");
-
+                        if (ent.getPokemonsCapturados().get(0).getHp() == 0 && ent.getPokemonsCapturados().get(1).getHp() == 0) {
+                            System.out.println("perdiste");
                             return;
-                        }
+                   }
                         System.out.println("");
-                        System.out.println("Cambia de pokemon,esta debil");
-                    }
+                     System.out.println("Cambia de pokemon,esta debil");
+                   }
 
-                } else {
-                    System.out.println("Por favor, introduce un número válido.");
-                }
+                } 
+         else {
+                    
+               System.out.println("Por favor introduce un número válido");               }
 
-            } catch (Exception ex) {
-                System.out.println("Error: Introduce un número válido.");
+           } catch (Exception ex) {
+                System.out.println("Error Introduce un número válido");
             }
         }
     }
-   
-           //pasame profe 
+  
     
 }

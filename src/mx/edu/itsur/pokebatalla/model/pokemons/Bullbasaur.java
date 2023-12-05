@@ -23,7 +23,7 @@ public class Bullbasaur extends Pokemon {
 
     public Bullbasaur() {
         tipo = "PLANTA/VENENO";
-        hp = 45;
+        hp = 100;
         ataque = 49;
         defensa = 49;
         nivel = 1;

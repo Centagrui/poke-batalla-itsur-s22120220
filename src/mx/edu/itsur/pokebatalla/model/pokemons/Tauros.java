@@ -25,7 +25,7 @@ public class Tauros extends Pokemon {
     private final ArrayList<Object> habilidades;
     public Tauros ()
     {
-        this.ataque = 198; 
+        this.ataque = 12; 
         this.defensa = 183; 
         this.hp = 100; 
         this.nivel = 50; 

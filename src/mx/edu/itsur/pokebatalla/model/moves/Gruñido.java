@@ -7,18 +7,16 @@ package mx.edu.itsur.pokebatalla.model.moves;
 
 /**
  *
- * @author Maria Centagrui Perez Alvarez 
+ * @author perez
  */
-public class Placaje  extends MovimientoEspecial {
-
-    public Placaje () {
+public class Gruñido extends MovimientoEstado{
+    
+    public Gruñido() {
         this.tipo = Movimiento.TiposDeMovimiento.NORMAL;
-        this.potencia = 40;
-        this.precision = 100;
-        this.puntosPoder = 35;
+        this.potencia = 0;/*poder*/
+        this.precision = 100;/*acc*/
+        this.puntosPoder = 40;/*pp*/
 
     }
-}
-
     
-
+}

@@ -9,13 +9,14 @@ package mx.edu.itsur.pokebatalla.model.moves;
  *
  * @author  Maria Centagrui Perez Alvarez
  */
-public class CabezazoZen extends MovimientoEstado{
+public class Arañazo extends MovimientoFisico{
 
-    public  CabezazoZen() {
-        this.tipo = Movimiento.TiposDeMovimiento.PSIQUICO;
-        this.potencia = 80;
-        this.precision = 90;
-        this.puntosPoder = 15;        
-    }
+    public Arañazo() {
+        this.tipo=TiposDeMovimiento.NORMAL;
+        this.potencia = 40;/*poder*/
+        this.precision = 100;/*acc*/
+        this.puntosPoder = 35;/*pp*/
+    
+ }
     
 }

@@ -4,6 +4,7 @@
  */
 package mx.edu.itsur.pokebatalla.model.pokemons;
 
+import java.io.Serializable;
 import java.util.List;
 import mx.edu.itsur.pokebatalla.model.moves.Movimiento;
 
@@ -11,7 +12,7 @@ import mx.edu.itsur.pokebatalla.model.moves.Movimiento;
  *
  * @author Maria Centagrui PEREZ Alvarez
  */
-public abstract class Pokemon {
+public abstract class Pokemon implements Serializable{
 
    //Atributos
     protected String nombre;

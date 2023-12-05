@@ -12,11 +12,8 @@ package FileManager;
 import Pokebatalla.Batalla.Batalla;
 import java.io.*;
 
-public class FileManager {
-     
-    public static final String pokemones = "batalla.txt";
-
-    public static final String partida = "batalla";
+public class FileManager implements Serializable {    
+    public static final String partida = "GuardadoDeLaBatalla.Centagrui";
 
     public static void escribirPartida(Batalla x) {
         try (ObjectOutputStream escritorDeObjetos = new ObjectOutputStream(new FileOutputStream(partida))) {
@@ -43,4 +40,5 @@ public class FileManager {
     }
 }
 }
+
 

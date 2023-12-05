@@ -26,7 +26,7 @@ public class Mew extends Pokemon {
     public Mew ()
     {
          this.tipo = "Siquico";
-        this.ataque = 190; 
+        this.ataque = 18; 
         this.defensa = 169; 
         this.hp = 100; 
         this.nivel = 50; 

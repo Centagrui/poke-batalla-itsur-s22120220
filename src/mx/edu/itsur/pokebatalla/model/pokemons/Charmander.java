@@ -5,6 +5,7 @@
 package mx.edu.itsur.pokebatalla.model.pokemons;
 
 import mx.edu.itsur.pokebatalla.model.moves.AtaqueRapido;
+import mx.edu.itsur.pokebatalla.model.moves.Gruñido;
 import mx.edu.itsur.pokebatalla.model.moves.Impactrueno;
 import mx.edu.itsur.pokebatalla.model.moves.Latigo;
 import mx.edu.itsur.pokebatalla.model.moves.Movimiento;
@@ -20,69 +21,62 @@ public class Charmander extends Pokemon {
      */
     public enum Movimientos {
         ATAQUE_RAPIDO,
-        Impactrueno,
-        Latigo,
+        GRUNIDO,
         //Otros movimientos...
     }
-
+    
     public Charmander() {
         tipo = "FUEGO";
-        hp = 39;
+        hp = 100;
         ataque = 52;
         defensa = 43;
         nivel = 1;
         precision = 4;
     }
 
-    
-    public  Charmander(String nombre){
-        this();
+    //Constructor alterno 1
+    public Charmander(String nombre) {
+        this(); //invocando al constructor default
         this.nombre = nombre;
     }
     
-    public Enum[] getMovimientos(){
-        return  Charmander.Movimientos.values();
-    }
+    @Override
+    public Enum[] getMovimientos() {
+        return Charmander.Movimientos.values();
+    }    
     
-    public void atacar(Pokemon oponente, int ordinalMovimiento){
+    @Override
+    public void atacar(Pokemon oponente, int ordinalMovimiento) {
+
+        //Si el pokemon está agotado no podrá realizar nada.
+        if (this.hp <= 0) {
+            System.out.println("Charmander esta agotado y no puede realizar mas movimientos.");
+            return;
+        }        
+        
+        //Obtener el movimiento de acuerdo a su numero ordinal
+        Charmander.Movimientos movimientoAUtilizar = 
+                Charmander.Movimientos.values()[ordinalMovimiento];
+        
+        //Instanciar el movimiento solicitado
         Movimiento instanciaMovimiento;
-        Charmander.Movimientos movimientoAUtilizar =  Charmander.Movimientos.values()[ordinalMovimiento];
-        switch(movimientoAUtilizar){
-            case Latigo:
-                instanciaMovimiento = new Latigo();
-                break;
+        switch (movimientoAUtilizar) {
             case ATAQUE_RAPIDO:
                 instanciaMovimiento = new AtaqueRapido();
                 break;
-            case  Impactrueno:
-                instanciaMovimiento = new Impactrueno();
+            case GRUNIDO:
+                instanciaMovimiento = new Gruñido();
                 break;
+            //Otros movimientos aquí...
             default:
                 throw new AssertionError();
         }
-        if(this.hp<=0){
-            System.out.println(" Charmander esta agotado y ya no puede realizar mas movimientos");
-            return;
-        }
+
+        //Aplicar el movimiento
         instanciaMovimiento.utilizar(this, oponente);
+        
     }
-    public void atacar (Pokemon oponente, Pikachu.Movimientos movimientosAutilizar){
-        Movimiento instanciaMovimiento;
-        switch(movimientosAutilizar){
-            case IMPACTRUENO:
-                instanciaMovimiento = new Impactrueno();
-                break;
-            case ATAQUE_RAPIDO:
-                instanciaMovimiento = new AtaqueRapido ();
-                break;
-            case  LATIGO:
-                instanciaMovimiento = new  Latigo();
-                break;
-            default:
-                throw new AssertionError();
-        }
-    } 
-
-
+    
 }
+
 
